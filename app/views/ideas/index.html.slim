@@ -1,0 +1,31 @@
+p#notice= notice
+h1 Skills & Exercises
+.row.hidden-sm.hidden-xs
+  .col-md-2
+    h2 Name
+  .col-md-3
+    h2 Description
+  .col-md-4 
+    h2 Video
+  .col-md-1
+    h2 Skills
+  .col-md-1
+    h2 Length
+  .col-md-1
+- @ideas.each do |idea|
+  .row
+    .col-md-2= idea.name
+    .col-md-3= idea.description
+    .col-md-4= idea.video
+    .col-md-1= idea.skill
+    .col-md-1
+      = idea.length
+      span  Min
+    .col-md-1.hidden-sm.hidden-xs.text-right
+      p= link_to 'View', idea
+      p= link_to 'Edit', edit_idea_path(idea)
+      p= link_to 'Delete', idea, method: :delete, confirm: 'Are you sure?'  
+br/
+.row
+  .col-sm-12
+    p= link_to 'Add New', new_idea_path

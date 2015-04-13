@@ -1,0 +1,52 @@
+= form_for(@idea) do |f|
+  - if @idea.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@idea.errors.count, "error")
+        | prohibited this idea from being saved:
+      ul
+        - @idea.errors.full_messages.each do |message|
+          li= message
+  .row
+    .col-sm-3.col-md-1
+      = f.label :name
+    .col-sm-9.col-md-11
+      = f.text_field :name
+  .row
+    .col-sm-3.col-md-1
+      = f.label :description
+    .col-sm-9.col-md-11
+      = f.text_area :description
+  .row
+    .col-sm-3.col-md-1
+      = f.label :video
+    .col-sm-9.col-md-11
+      = f.text_field :video
+  .row
+    .col-sm-3.col-md-1
+      = f.label :length
+    .col-sm-9.col-md-11
+      = f.number_field :length, max: "60"
+      |  Min(s)
+  .row 
+    .col-sm-3.col-md-1
+      = f.label :skill
+    .col-sm-9.col-md-11
+      = check_box_tag :upper_body, true, false 
+      = label_tag :upper_body
+      = check_box_tag :lower_body, true, false
+      = label_tag :lower_body
+      = check_box_tag :abs, true, false
+      = label_tag :abs
+      = check_box_tag :grip, true, false
+      = label_tag :grip
+  .row 
+    .col-sm-3.col-md-1
+      = f.label :equipment
+    .col-sm-9.col-md-11
+      = check_box_tag :silks, true, false 
+      = label_tag :silks
+      = check_box_tag :weights, true, false
+      = label_tag :weights
+  .row
+    = f.submit "Add Entry", class: "btn"
